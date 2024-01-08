@@ -36,4 +36,8 @@ public class StudentController {
         List<Student> students = studentService.all();
         return ResponseEntity.ok(students);
     }
+    @PutMapping("/update")
+    public ResponseEntity<Boolean> updateStudentInformation(@RequestBody Student student) {
+        return ResponseEntity.ok(studentService.updateStudent(student));
+    }
 }

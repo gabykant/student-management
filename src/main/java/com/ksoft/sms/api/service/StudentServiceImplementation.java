@@ -27,4 +27,21 @@ public class StudentServiceImplementation implements StudentService {
     public List<Student> all() {
         return studentRepository.findAll();
     }
+
+    @Override
+    public boolean updateStudent(Student student) {
+        Optional<Student> st = studentRepository.findById(student.getId());
+        if(st.isPresent()) {
+            Student record = st.get();
+            record.setFirstname(student.getFirstname());
+            record.setLastname(student.getLastname());
+            record.setAddress(student.getAddress());
+            record.setDob(student.getDob()); 
+            studentRepository.save(record); 
+            return true;
+        } 
+        return false;
+    }
+
+
 }
